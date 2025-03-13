@@ -1,1 +1,1 @@
-# spring-boot-hit-2025
+# solve-exercise-spring-boot-hit-2025
