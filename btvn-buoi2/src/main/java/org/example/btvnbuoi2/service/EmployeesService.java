@@ -16,16 +16,12 @@ public class EmployeesService {
         this.employeesRepository = employeesRepository;
     }
 
-    public Employees saveEmployee(Employees employees){
-        return employeesRepository.save(employees);
+    public void saveEmployee(Employees employees){
+        employeesRepository.save(employees);
     }
 
     public void deleteEmployee(Long id){
         employeesRepository.deleteById(id);
-    }
-
-    public void updateEmployee(Employees employees){
-        employeesRepository.save(employees);
     }
 
     public List<Employees> getAllEmployees(){
