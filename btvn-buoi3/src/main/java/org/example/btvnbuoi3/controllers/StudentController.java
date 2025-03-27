@@ -2,46 +2,34 @@ package org.example.btvnbuoi3.controllers;
 
 import org.example.btvnbuoi3.entities.Student;
 import org.example.btvnbuoi3.services.StudentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/students")
 public class StudentController {
 
-    @Autowired
-    private StudentService studentService;
+    private final StudentService studentService;
+
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     @GetMapping
-    public String listStudents(Model model) {
-        model.addAttribute("students", studentService.getAllStudent());
-        return "student/list";
+    public String getAllStudents(Model model) {
+        List<Student> students = studentService.getAllStudent();
+        model.addAttribute("students", students);
+        return "student/index";
     }
 
-    @GetMapping("/create")
-    public String showCreateForm(Model model) {
-        model.addAttribute("student", new Student());
-        return "student/create";
-    }
-
-    @PostMapping("/create")
-    public String createStudent(@ModelAttribute("student") Student student) {
-        studentService.creatStudent(student);
-        return "redirect:/students";
-    }
-
-    @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable Long id, Model model) {
-        Student student = studentService.getStudentByID(id);
-        model.addAttribute("student", student);
-        return "student/edit";
-    }
-
-    @PostMapping("/edit/{id}")
-    public String updateStudent(@ModelAttribute("student") Student student) {
-        studentService.updateStudent(student);
+    @PostMapping("/add")
+    public String addStudent(@ModelAttribute Student student) {
+        studentService.saveStudent(student);
         return "redirect:/students";
     }
 
@@ -50,4 +38,17 @@ public class StudentController {
         studentService.deleteStudent(id);
         return "redirect:/students";
     }
+
+    @PostMapping("/update/{id}")
+    public String updateStudent(@PathVariable Long id, @ModelAttribute("student") Student student){
+        studentService.updateStudent(id, student);
+        return "redirect:/students";
+    }
+
+    @GetMapping("/edit/{id}")
+    @ResponseBody
+    public Student showEditForm(@PathVariable("id") Long id) {
+        return studentService.getStudentByID(id);
+    }
 }
+

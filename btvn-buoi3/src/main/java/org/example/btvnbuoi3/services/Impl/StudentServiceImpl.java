@@ -7,12 +7,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class StudentServiceImpl implements StudentService {
 
+    private final StudentRepository studentRepository;
+
     @Autowired
-    private StudentRepository studentRepository;
+    public StudentServiceImpl(StudentRepository studentRepository) {
+        this.studentRepository = studentRepository;
+    }
 
     @Override
     public List<Student> getAllStudent() {
@@ -20,18 +25,17 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void creatStudent(Student student) {
+    public void saveStudent(Student student) {
         studentRepository.save(student);
     }
 
-    @Override
-public void updateStudent(Student student) {
-        Student updatedStudent = studentRepository.findById(student.getId()).orElse(null);
-        updatedStudent.setName(student.getName());
-        updatedStudent.setAddress(student.getAddress());
-        updatedStudent.setEmail(student.getEmail());
-        updatedStudent.setPhoneNumber(student.getPhoneNumber());
-        studentRepository.save(updatedStudent);
+    public void updateStudent(Long id, Student updatedStudent) {
+        Student currentStudent = getStudentByID(id);
+        currentStudent.setName(updatedStudent.getName());
+        currentStudent.setEmail(updatedStudent.getEmail());
+        currentStudent.setPhoneNumber(updatedStudent.getPhoneNumber());
+        currentStudent.setAddress(updatedStudent.getAddress());
+        studentRepository.save(currentStudent);
     }
 
     @Override
@@ -41,6 +45,6 @@ public void updateStudent(Student student) {
 
     @Override
     public Student getStudentByID(Long id) {
-        return studentRepository.findById(id).orElse(null);
+        return studentRepository.findById(id).orElseThrow(() -> new RuntimeException("Student not found"));
     }
 }

@@ -30,14 +30,11 @@ function loadStudent(id) {
             $('#editId').val(student.id);
             $('#editName').val(student.name);
             $('#editEmail').val(student.email);
-            $('#editPhone').val(student.phoneNumber);
+            $('#editPhoneNumber').val(student.phoneNumber);
             $('#editAddress').val(student.address);
 
             $('#editForm').attr('action', '/students/update/' + student.id);
 
-        },
-        error: function() {
-            alert('Error loading student data');
         }
     });
 }
