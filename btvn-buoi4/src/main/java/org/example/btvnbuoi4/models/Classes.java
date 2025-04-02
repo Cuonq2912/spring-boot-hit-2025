@@ -27,6 +27,5 @@ public class Classes {
     String subject;
 
     @OneToMany(mappedBy = "classes", fetch = FetchType.LAZY, orphanRemoval = true, cascade = CascadeType.ALL)
-    @BatchSize(size = 30)
     List<Students> students = new ArrayList<>();
 }

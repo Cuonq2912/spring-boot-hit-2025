@@ -1,6 +1,5 @@
 package org.example.btvnbuoi4.dtos.requests.classes;
 
-import jakarta.persistence.Entity;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;

@@ -7,7 +7,6 @@ import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.example.btvnbuoi4.models.Classes;
 import org.example.btvnbuoi4.models.Gender;
 
 import java.util.Date;
