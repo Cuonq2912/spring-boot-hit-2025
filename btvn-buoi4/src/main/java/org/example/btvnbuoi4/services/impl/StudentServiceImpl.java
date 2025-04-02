@@ -49,7 +49,12 @@ public class StudentServiceImpl implements StudentService {
     public StudentResponse updateStudent(Long id, StudentUpdateRequest request) {
         Students students = studentRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Student is not found!!!"));
+
+        Classes classes = classesRepository.findById(request.getClassId())
+                        .orElseThrow(() -> new AppException(ErrorCode.CLASSES_NOT_FOUND));
+
         studentMapper.updateStudent(students, request);
+        students.setClasses(classes);
         return studentMapper.toStudentResponse(studentRepository.save(students));
     }
 
@@ -75,7 +80,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentResponse> getStudentsByClassName(Classes className) {
-        return studentRepository.findByClasses(className);
+    public List<StudentResponse> getStudentsByClassName(String className) {
+        return studentRepository.findByClasses_Name(className);
     }
 }

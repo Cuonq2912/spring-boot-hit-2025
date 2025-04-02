@@ -14,5 +14,5 @@ public interface StudentService {
     StudentResponse getStudentById(Long id);
     void deleteStudent(Long id);
     StudentResponse getStudentByName(String name);
-    List<StudentResponse> getStudentsByClassName(Classes className);
+    List<StudentResponse> getStudentsByClassName(String className);
 }

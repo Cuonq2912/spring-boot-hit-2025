@@ -7,7 +7,7 @@ import org.example.btvnbuoi4.dtos.responses.ClassesResponse;
 import java.util.List;
 
 public interface ClassesService {
-    ClassesResponse createClass(ClassesCreationRequest request);
+    ClassesResponse addClass(ClassesCreationRequest request);
     ClassesResponse updateClass(Long id, ClassesUpdateRequest request);
     List<ClassesResponse> getAllClasses();
     ClassesResponse getClassById(Long id);

@@ -15,34 +15,34 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-@RequestMapping("/classes")
+@RequestMapping("/v1/classes")
 public class ClassesController {
     ClassesService classesService;
 
     @PostMapping("/create")
-    ApiResponse<ClassesResponse> createClass(@RequestBody @Valid ClassesCreationRequest request){
+    ApiResponse<ClassesResponse> addClass(@RequestBody @Valid ClassesCreationRequest request){
         ApiResponse<ClassesResponse> apiResponse = new ApiResponse<>();
-        apiResponse.setResult(classesService.createClass(request));
+        apiResponse.setResult(classesService.addClass(request));
         return apiResponse;
     }
 
-    @GetMapping("/getAll")
+    @GetMapping()
     List<ClassesResponse> getAllClasses(){
         return classesService.getAllClasses();
     }
 
-    @GetMapping("/{id}")
-    ClassesResponse getClassById(@PathVariable Long id){
+    @GetMapping(params = "id")
+    ClassesResponse getClassById(@RequestParam Long id){
         return classesService.getClassById(id);
     }
 
     @PutMapping("update/{id}")
-    ClassesResponse updateById(@PathVariable Long id, @RequestBody @Valid ClassesUpdateRequest request){
+    ClassesResponse updateClass(@PathVariable Long id, @RequestBody @Valid ClassesUpdateRequest request){
         return classesService.updateClass(id, request);
     }
 
     @DeleteMapping("delete/{id}")
-    String deleteById(@PathVariable Long id){
+    String deleteClass(@PathVariable Long id){
         classesService.deleteClass(id);
         return "Class has been deleted";
     }

@@ -26,7 +26,7 @@ public class ClassesServiceImpl implements ClassesService {
 
 
     @Override
-    public ClassesResponse createClass(ClassesCreationRequest request) {
+    public ClassesResponse addClass(ClassesCreationRequest request) {
        if(classesRepository.existsByName(request.getName())){
            throw new AppException(ErrorCode.CLASSES_NAME_EXISTS);
        }

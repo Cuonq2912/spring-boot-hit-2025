@@ -16,18 +16,29 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
-@RequestMapping("/students")
+@RequestMapping("/v1/students")
 public class StudentController {
     StudentService studentService;
 
-    @GetMapping("/getAll")
+    @GetMapping()
     List<StudentResponse> getAll(){
         return studentService.getAllStudents();
     }
 
-    @GetMapping("/{id}")
-    StudentResponse getById(@PathVariable Long id){
+    @GetMapping(params = "id")
+    StudentResponse getById(@RequestParam Long id){
         return studentService.getStudentById(id);
+    }
+
+    @GetMapping(params = "name")
+    StudentResponse getByName(@RequestParam String name){
+        return studentService.getStudentByName(name);
+    }
+
+    // Have an error when using this method
+    @GetMapping(params = "className")
+    List<StudentResponse> getByClassName(@RequestParam String className){
+        return studentService.getStudentsByClassName(className);
     }
 
     @PostMapping("/create")
@@ -37,11 +48,10 @@ public class StudentController {
         return apiResponse;
     }
 
-    // has a bug in this function
-//    @PutMapping("/update/{id}")
-//    StudentResponse updateStudent(@PathVariable Long id, @RequestBody @Valid StudentUpdateRequest request){
-//        return studentService.updateStudent(id, request);
-//    }
+    @PutMapping("/update/{id}")
+    StudentResponse updateStudent(@PathVariable Long id, @RequestBody @Valid StudentUpdateRequest request){
+        return studentService.updateStudent(id, request);
+    }
 
     @DeleteMapping("delete/{id}")
     String deleteStudent(@PathVariable Long id){

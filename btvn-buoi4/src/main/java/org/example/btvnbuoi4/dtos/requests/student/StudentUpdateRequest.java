@@ -1,12 +1,12 @@
 package org.example.btvnbuoi4.dtos.requests.student;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Pattern;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.example.btvnbuoi4.models.Classes;
 import org.example.btvnbuoi4.models.Gender;
 
 import java.util.Date;
@@ -21,6 +21,7 @@ public class StudentUpdateRequest {
     String name;
 
     @NotNull(message = "NOT_NULL_INPUT")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     Date dateOfBirth;
 
     @NotNull(message = "NOT_NULL_INPUT")
@@ -35,5 +36,5 @@ public class StudentUpdateRequest {
     String phoneNumber;
 
     @NotNull(message = "NOT_NULL_INPUT")
-    Long classID;
+    Long classId;
 }
