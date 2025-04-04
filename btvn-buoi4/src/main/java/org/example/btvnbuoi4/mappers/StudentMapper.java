@@ -13,7 +13,6 @@ import java.util.List;
 @Mapper(componentModel = "spring")
 public interface StudentMapper {
     Students toStudent(StudentCreationRequest request);
-    @Mapping(target = "classes.subject", source = "classes.subject")
     StudentResponse toStudentResponse(Students students);
     void updateStudent(@MappingTarget Students students, StudentUpdateRequest request);
     List<StudentResponse> toListStudentResponse(List<Students> students);

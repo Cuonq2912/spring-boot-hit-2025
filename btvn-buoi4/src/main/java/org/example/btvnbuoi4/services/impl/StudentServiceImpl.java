@@ -76,11 +76,13 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentResponse getStudentByName(String name) {
-        return studentRepository.findByName(name);
+        Students students = studentRepository.findByName(name);
+        return studentMapper.toStudentResponse(students);
     }
 
     @Override
     public List<StudentResponse> getStudentsByClassName(String className) {
-        return studentRepository.findByClasses_Name(className);
+        List<Students> studentsList = studentRepository.findByClasses_Name(className);
+        return studentMapper.toListStudentResponse(studentsList);
     }
 }
