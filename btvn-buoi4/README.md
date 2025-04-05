@@ -68,7 +68,7 @@ btvn-buoi4/
 ![Get student by id](src/main/resources/static/images/get-student-by-id.png)
 
 #### Get students by class name
-- **Endpoint**: GET http://localhost:8080/v1/students/className={classes}
+- **Endpoint**: `GET http://localhost:8080/v1/students/className={classes}`
 - **Response**: Student details, status code **200 (OK)**
 
 ![Get Students by className](src/main/resources/static/images/get-student-by-class-name.png)
