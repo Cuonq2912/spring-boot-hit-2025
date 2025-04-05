@@ -73,9 +73,6 @@ btvn-buoi4/
 
 ![Get Students by className](src/main/resources/static/images/get-student-by-class-name.png)
 
-
-![Get Student By ID](src/main/resources/static/images/get-student-by-id.png)
-
 #### Update student
 - **Endpoint**: `PUT http://localhost:8080/v1/students/update/{id}`
 - **Request Body**: Updated student details
