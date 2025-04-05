@@ -39,7 +39,7 @@ public class StudentController {
                 .build();
         return new ResponseEntity<>(apiResponse, HttpStatus.OK);
     }
-
+    
     @GetMapping(params = "id")
     ResponseEntity<ApiResponse<StudentResponse>> getById(@RequestParam Long id){
         StudentResponse studentResponse = studentService.getStudentById(id);
