@@ -3,7 +3,6 @@ package org.example.btvnbuoi4.models;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
-import org.hibernate.annotations.BatchSize;
 
 import java.util.ArrayList;
 import java.util.List;

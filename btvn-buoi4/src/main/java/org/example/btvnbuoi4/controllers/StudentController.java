@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 import lombok.experimental.FieldDefaults;
+import lombok.extern.log4j.Log4j2;
 import org.example.btvnbuoi4.dtos.requests.student.StudentCreationRequest;
 import org.example.btvnbuoi4.dtos.requests.student.StudentUpdateRequest;
 import org.example.btvnbuoi4.dtos.responses.ApiResponse;
@@ -24,6 +25,7 @@ import static org.springframework.http.HttpStatus.NO_CONTENT;
 @RequiredArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE, makeFinal = true)
 @RequestMapping("/v1/students")
+@Log4j2
 public class StudentController {
 
     StudentService studentService;
@@ -80,6 +82,7 @@ public class StudentController {
 
     @PostMapping("/create")
     ResponseEntity<ApiResponse<StudentResponse>> createStudent(@RequestBody @Valid StudentCreationRequest request){
+        log.info("Creating student with request: {}", request);
         StudentResponse studentResponse = studentService.createStudent(request);
         ApiResponse<StudentResponse> apiResponse = ApiResponse.<StudentResponse>builder()
                 .status(CREATED.value())

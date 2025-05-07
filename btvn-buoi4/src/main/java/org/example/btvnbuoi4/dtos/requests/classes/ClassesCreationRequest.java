@@ -10,6 +10,7 @@ import lombok.experimental.FieldDefaults;
 @NoArgsConstructor
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class ClassesCreationRequest {
+
     @Size(min = 10, max = 50, message = "CLASSES_NAME_INVALID")
     @NotNull(message = "NOT_NULL_INPUT")
     String name;
