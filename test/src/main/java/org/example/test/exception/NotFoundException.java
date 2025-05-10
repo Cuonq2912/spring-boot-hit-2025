@@ -1,0 +1,28 @@
+package org.example.test.exception;
+
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.experimental.FieldDefaults;
+import org.springframework.http.HttpStatus;
+
+@Getter
+@Setter
+@FieldDefaults(level = AccessLevel.PRIVATE)
+public class NotFoundException extends RuntimeException {
+
+    String message;
+    HttpStatus statusCode;
+
+    public NotFoundException(String message) {
+        super(message);
+        this.message = message;
+        this.statusCode = HttpStatus.NOT_FOUND;
+    }
+
+    public NotFoundException(HttpStatus httpStatus, String message){
+        super(message);
+        this.message = message;
+        this.statusCode = httpStatus;
+    }
+}
