@@ -11,16 +11,16 @@ import java.util.List;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
-    @Query("SELECT e FROM Employee e WHERE e.fullname like %:fullname%")
-    List<Employee> findByFullname(String fullname);
+    @Query("SELECT e FROM Employee e WHERE e.fullName like %:fullname%")
+    List<Employee> findByFullName(String fullName);
     List<Employee> findByDepartmentId(Long departmentId);
-    List<Employee> findByPositionId(Long posisionId);
+    List<Employee> findByPositionId(Long positionId);
 
-    @Query("SELECT e FROM Employee e WHERE (:fullname IS NULL OR e.fullname LIKE %:fullname%) " +
+    @Query("SELECT e FROM Employee e WHERE (:fullname IS NULL OR e.fullName LIKE %:fullname%) " +
             "AND (:departmentId IS NULL OR e.department.id = :departmentId) " +
             "AND (:positionId IS NULL OR e.position.id = :positionId)")
     List<Employee> findByMultipleCondition(
-            @Param("fullname") String fullname,
+            @Param("fullName") String fullName,
             @Param("departmentId") Long departmentId,
             @Param("positionId") Long positionId);
 }

@@ -54,7 +54,7 @@ public class UserWork implements UserService {
     public UserDto updateUser(Long id, UserUpdateDto userDto) {
         Optional<User> user = userRepository.findById(id);
         checkUserNotFound(user, id);
-        userMapper.updateUser(user, userDto);
+        userMapper.updateUserFromDto(userDto, user.get());
         return userMapper.toUserDto(userRepository.save(user.get()));
     }
 

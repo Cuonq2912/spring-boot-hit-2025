@@ -8,13 +8,12 @@ import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
 import java.util.List;
-import java.util.Optional;
 
 @Mapper(componentModel = "spring")
 public interface EmployeeMapper {
 
     Employee toEmployee(EmployeeCreateDto employeeDto);
     EmployeeDto toEmployeeDto(Employee employee);
-    void updateEmployee(@MappingTarget Optional<Employee> employee, EmployeeUpdateDto employeeDto);
+    void updateEmployeeFromDto(EmployeeUpdateDto employeeDto, @MappingTarget Employee employee);
     List<EmployeeDto> toEmployeeDtoList(List<Employee> employees);
 }

@@ -31,12 +31,12 @@ public class PositionController {
     }
 
     @PostMapping(UrlConstant.Position.CREATE_POSITION)
-    public ResponseEntity<?> createPosition(@Valid PositionCreateDto positionCreateDto){
+    public ResponseEntity<?> createPosition(@Valid @RequestBody PositionCreateDto positionCreateDto){
         return VsResponseUtil.ok(positionService.createPosition(positionCreateDto));
     }
 
     @PutMapping(UrlConstant.Position.UPDATE_POSITION)
-    public ResponseEntity<?> updatePosition(@Valid PositionUpdateDto positionUpdateDto, @PathVariable Long positionId){
+    public ResponseEntity<?> updatePosition(@Valid @RequestBody PositionUpdateDto positionUpdateDto, @PathVariable Long positionId){
         return VsResponseUtil.ok(positionService.updatePosition(positionId, positionUpdateDto));
     }
 

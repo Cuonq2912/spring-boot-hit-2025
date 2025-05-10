@@ -21,10 +21,12 @@ import java.time.LocalDate;
 public class EmployeeDto {
 
     Long id;
-    Department department;
-    Position position;
-    User user;
-    String fullname;
+    Long departmentId;
+    Long positionId;
+    Long userId;
+    String fullName;
+    LocalDate dateOfBirth;
+    LocalDate hiredDate;
     BigDecimal salary;
 
 }

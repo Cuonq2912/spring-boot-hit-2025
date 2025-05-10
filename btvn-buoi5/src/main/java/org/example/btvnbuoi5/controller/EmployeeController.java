@@ -30,7 +30,7 @@ public class EmployeeController {
         return VsResponseUtil.ok(employeeService.getEmployeeById(employeeId));
     }
 
-    @GetMapping(UrlConstant.Employee.GET_EMPLOYEES_BY_FULLNAME)
+    @GetMapping(UrlConstant.Employee.GET_EMPLOYEES_BY_FULL_NAME)
     public ResponseEntity<?> getEmployeesByFullName(@PathVariable String fullName) {
         return VsResponseUtil.ok(employeeService.getEmployeesByFullName(fullName));
     }

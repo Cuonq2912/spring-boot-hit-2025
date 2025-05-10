@@ -45,14 +45,14 @@ public class DepartmentWork implements DepartmentService {
     @Override
     public DepartmentDto createDepartment(DepartmentCreateDto departmentDto) {
         Department department = departmentMapper.toDepartment(departmentDto);
-        return departmentMapper.toDepartmentDto(department);
+        return departmentMapper.toDepartmentDto(departmentRepository.save(department));
     }
 
     @Override
     public DepartmentDto updateDepartment(Long id, DepartmentUpdateDto departmentDto) {
         Optional<Department> department = departmentRepository.findById(id);
         checkDepartmentNotFound(department, id);
-        departmentMapper.updateDepartment(department, departmentDto);
+        departmentMapper.updateDepartmentFromDto(departmentDto, department.get());
         return departmentMapper.toDepartmentDto(departmentRepository.save(department.get()));
     }
 

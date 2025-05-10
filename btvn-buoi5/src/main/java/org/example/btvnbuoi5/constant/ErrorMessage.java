@@ -7,6 +7,10 @@ public class ErrorMessage {
     public static final String INVALID_SOME_THING_FIELD_IS_REQUIRED = "Trường không hợp lệ";
     public static final String INVALID_FORMAT_SOME_THING_FIELD = "Trường không hợp lệ";
 
+    public static final String NOT_FOUND = "Not Found Exception: %s";
+    public static final String VALIDATE_ERROR = "Validate Exception: %s";
+    public static final String INTERNAL_SERVER_ERROR = "Internal Server Error: %s";
+
     public static class User{
         public static final String ERR_NOT_FOUND_ID = "Không tìm thấy người dùng với id: %s";
     }

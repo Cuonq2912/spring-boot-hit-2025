@@ -37,7 +37,7 @@ public class Employee {
     User user;
 
     @Column(name = "full_name", length = 100, nullable = false)
-    String fullname;
+    String fullName;
     @Column(name = "date_of_birth", columnDefinition = "DATE")
     LocalDate dateOfBirth;
     @Column(name = "hired_date", columnDefinition = "DATE")

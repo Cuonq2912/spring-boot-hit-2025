@@ -7,12 +7,11 @@ import org.example.btvnbuoi5.domain.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
 
-import java.util.Optional;
 
 @Mapper(componentModel = "spring")
 public interface UserMapper {
 
     User toUser(UserCreateDto userDto);
     UserDto toUserDto(User user);
-    void updateUser(@MappingTarget Optional<User> user, UserUpdateDto userDto);
+    void updateUserFromDto(UserUpdateDto userDto, @MappingTarget User user);
 }

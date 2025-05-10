@@ -53,7 +53,7 @@ public class PositionWork implements PositionService {
     public PositionDto updatePosition(Long id, PositionUpdateDto positionDto) {
         Optional<Position> position = positionRepository.findById(id);
         checkPositionNotFound(position, id);
-        positionMapper.updatePosition(position, positionDto);
+        positionMapper.updatePositionFromDto(positionDto, position.get());
         return positionMapper.toPositionDto(positionRepository.save(position.get()));
     }
 
