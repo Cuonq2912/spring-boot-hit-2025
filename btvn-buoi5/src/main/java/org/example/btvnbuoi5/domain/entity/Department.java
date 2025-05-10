@@ -24,7 +24,7 @@ public class Department {
     String name;
     @Column(columnDefinition = "TEXT")
     String description;
-    @OneToMany(mappedBy = "department", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "department", cascade = CascadeType.REMOVE, fetch = FetchType.LAZY)
     List<Employee> employees = new ArrayList<>();
 
 }
