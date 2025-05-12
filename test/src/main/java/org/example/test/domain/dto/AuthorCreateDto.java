@@ -4,8 +4,9 @@ import jakarta.validation.constraints.NotBlank;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 import org.example.test.constant.ErrorMessage;
+import org.springframework.format.annotation.DateTimeFormat;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -17,7 +18,8 @@ public class AuthorCreateDto {
 
     @NotBlank(message = ErrorMessage.NOT_BLANK_FIELD)
     String name;
-    LocalDateTime dateOfBirth;
+    @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
+    LocalDate dateOfBirth;
     String bio;
 
 }

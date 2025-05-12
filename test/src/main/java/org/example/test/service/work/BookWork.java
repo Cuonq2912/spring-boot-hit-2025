@@ -57,14 +57,15 @@ public class BookWork implements BookService {
         return new CommonResponseDto(CommonConstant.TRUE, CommonMessage.DELETE_SUCCESS);
     }
 
-//    @Override
-//    public List<BookDto> getBookByName(String name) {
-//        List<Book> employee = bookRepository.findByFullName(fullName);
-//        if(employee.isEmpty()){
-//            throw new NotFoundException(String.format(ErrorMessage.Employee.ERR_NOT_FOUND_FULLNAME, fullName));
-//        }
-//        return employeeMapper.toEmployeeDtoList(employee);
-//    }
+    @Override
+    public List<BookDto> findByMultipleCondition(String name, Double price, String authorName, String categoryName) {
+        List<Book> books = bookRepository.getBookByMultiCondition(name, price, authorName, categoryName);
+        if (books.isEmpty()) {
+            throw new NotFoundException(ErrorMessage.Book.ERR_NOT_FOUND);
+        }
+        return bookMapper.toBookDtoList(books);
+    }
+
 
     private void checkBookNotFound(Optional<Book> book, Long id){
         if(book.isEmpty()){

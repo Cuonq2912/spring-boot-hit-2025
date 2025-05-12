@@ -13,7 +13,7 @@ public class ErrorMessage {
     public static class Book{
         public static final String INVALID_PRICE_GREATER_THAN_ZERO = "Price must be greater than 0";
         public static final String ERR_NOT_FOUND_ID = "Không tìm thấy sách với id: %s";
-
+        public static final String ERR_NOT_FOUND = "Không tìm thấy sách";
     }
 
     public static class Author{

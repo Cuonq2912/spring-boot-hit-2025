@@ -25,7 +25,7 @@ public class AuthorController {
         return VsResponseUtil.ok(authorService.getAllAuthor());
     }
 
-    @GetMapping(UrlConstant.Author.CREATE_AUTHOR)
+    @PostMapping(UrlConstant.Author.CREATE_AUTHOR)
     public ResponseEntity<?> createAuthor(@Valid @RequestBody AuthorCreateDto authorCreateDto){
         return VsResponseUtil.ok(authorService.createAuthor(authorCreateDto));
     }
@@ -34,7 +34,6 @@ public class AuthorController {
     public ResponseEntity<?> getAuthorById(@PathVariable Long authorId){
         return VsResponseUtil.ok(authorService.getAuthorById(authorId));
     }
-
 
     @PutMapping(UrlConstant.Author.UPDATE_AUTHOR)
     public ResponseEntity<?> updateUser(@Valid @RequestBody AuthorUpdateDto authorUpdateDto, @PathVariable Long authorId) {

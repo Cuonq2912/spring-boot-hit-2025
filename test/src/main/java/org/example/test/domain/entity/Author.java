@@ -4,7 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +25,8 @@ public class Author {
     @Column(length = 60, nullable = false, unique = true)
     String name;
 
-    @Column(name = "dateOfBirth", nullable = false)
-    LocalDateTime dateOfBirth;
+    @Column(name = "dateOfBirth", columnDefinition = "DATE", nullable = false)
+    LocalDate dateOfBirth;
 
     @Column(columnDefinition = "TEXT")
     String bio;

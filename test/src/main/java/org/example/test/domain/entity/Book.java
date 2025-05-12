@@ -31,7 +31,6 @@ public class Book {
 
     @ManyToOne
     @JoinColumn
-    @OnDelete(action = OnDeleteAction.SET_NULL)
     Author author;
 
     @ManyToOne

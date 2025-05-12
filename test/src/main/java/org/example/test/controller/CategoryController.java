@@ -26,7 +26,7 @@ public class    CategoryController {
         return VsResponseUtil.ok(categoryService.getAllCategory());
     }
 
-    @GetMapping(UrlConstant.Category.CREATE_CATEGORY)
+    @PostMapping(UrlConstant.Category.CREATE_CATEGORY)
     public ResponseEntity<?> create(@Valid @RequestBody CategoryCreateDto categoryCreateDto){
         return VsResponseUtil.ok(categoryService.createCategory(categoryCreateDto));
     }
@@ -36,7 +36,7 @@ public class    CategoryController {
         return VsResponseUtil.ok(categoryService.getCategoryById(categoryId));
     }
 
-    @PostMapping(UrlConstant.Category.UPDATE_CATEGORY)
+    @PutMapping(UrlConstant.Category.UPDATE_CATEGORY)
     public ResponseEntity<?> update(@Valid @RequestBody CategoryUpdateDto categoryUpdateDto, @PathVariable Long categoryId){
         return VsResponseUtil.ok(categoryService.updateCategory(categoryId, categoryUpdateDto));
     }

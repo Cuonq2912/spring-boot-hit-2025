@@ -26,7 +26,7 @@ public class Category {
     @Column(length = 60, nullable = false, unique = true)
     String name;
 
-    @OneToMany(mappedBy = "category", cascade = CascadeType.REMOVE)
+    @OneToMany(mappedBy = "category")
     List<Book> bookList = new ArrayList<>();
 
 }

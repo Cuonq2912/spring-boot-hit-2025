@@ -25,6 +25,18 @@ public class BookController {
         return VsResponseUtil.ok(bookService.getBookById(bookId));
     }
 
+    @GetMapping(UrlConstant.Book.GET_BOOKS + "/search")
+    public ResponseEntity<?> getBookByMultipleCondition(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) Double price,
+            @RequestParam(required = false) String authorName,
+            @RequestParam(required = false) String categoryName
+            ){
+        return VsResponseUtil.ok(bookService.findByMultipleCondition(
+                name, price, authorName, categoryName
+        ));
+    }
+
     @PostMapping(UrlConstant.Book.CREATE_BOOK)
     public ResponseEntity<?> createBook(@Valid @RequestBody BookCreateDto bookCreateDto) {
         return VsResponseUtil.ok(bookService.createBook(bookCreateDto));
@@ -39,6 +51,7 @@ public class BookController {
     public ResponseEntity<?> deleteBook(@PathVariable Long bookId) {
         return VsResponseUtil.ok(bookService.deleteBook(bookId));
     }
+
 
 
 }

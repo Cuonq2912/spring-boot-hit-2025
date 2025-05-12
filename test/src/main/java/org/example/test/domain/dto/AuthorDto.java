@@ -3,7 +3,7 @@ package org.example.test.domain.dto;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Getter
 @Setter
@@ -15,6 +15,6 @@ public class AuthorDto {
 
     Long id;
     String name;
-    LocalDateTime dateOfBirth;
+    LocalDate dateOfBirth;
     String bio;
 }

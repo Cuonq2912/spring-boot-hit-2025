@@ -24,4 +24,6 @@ public interface BookMapper {
     @Mapping(target = "category", source = "categoryId", qualifiedByName = "mapCategory")
     @Mapping(target = "author", source = "authorId", qualifiedByName = "mapAuthor")
     void updateBookFromDto(BookUpdateDto bookDto, @MappingTarget Book book);
+
+    List<BookDto> toBookDtoList(List<Book> books);
 }
