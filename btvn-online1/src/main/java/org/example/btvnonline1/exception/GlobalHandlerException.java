@@ -31,7 +31,7 @@ public class GlobalHandlerException {
         Map<String, Object> body = new HashMap<>();
         body.put("timestamp", LocalDateTime.now());
         body.put("status", HttpStatus.NOT_FOUND.value());
-        body.put("error", ErrorMessage.Hotel.ERR_NOT_FOUND_ID);
+        body.put("error", ErrorMessage.Hotel.ERR_NOT_FOUND);
         body.put("message", ex.getMessage());
         body.put("path", request.getDescription(CommonConstant.FALSE).replace("uri", ""));
         return new ResponseEntity<>(body, HttpStatus.NOT_FOUND);

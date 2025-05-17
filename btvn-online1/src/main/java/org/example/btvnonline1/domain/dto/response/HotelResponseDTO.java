@@ -3,7 +3,7 @@ package org.example.btvnonline1.domain.dto.response;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -16,6 +16,6 @@ public class HotelResponseDTO {
     String name;
     String location;
     Double price;
-    LocalDate creatDate;
-    LocalDate lastModifiedDate;
+    LocalDateTime createdDate;
+    LocalDateTime lastModifiedDate;
 }

@@ -26,6 +26,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,7 +44,7 @@ public class HotelServiceImpl implements HotelService {
         Pageable pageable = PageRequest.of(
                 requestDTO.getPageNum(),
                 requestDTO.getPageSize(),
-                Sort.by("createDate").descending());
+                Sort.by("createdDate").descending());
         Page<Hotel> result = hotelRepository.findAll(pageable);
 
         checkPageHotelIsEmpty(result);
@@ -56,7 +57,7 @@ public class HotelServiceImpl implements HotelService {
                         result.getTotalPages(),
                         requestDTO.getPageNum() + 1,
                         requestDTO.getPageSize(),
-                        "createDate",
+                        "createdDate",
                         "desc")
         );
         return responseDTO;
@@ -66,13 +67,16 @@ public class HotelServiceImpl implements HotelService {
     public HotelResponseDTO getHotelById(Long id) {
         Optional<Hotel> hotel = hotelRepository.findById(id);
         checkHotelNotFound(hotel, id);
-        return hotelMapper.hotelResponseDTO(hotel.get());
+        return hotelMapper.toHotelResponseDto(hotel.get());
     }
 
     @Override
     public HotelResponseDTO createHotel(HotelCreateDTO hotelCreateDTO) {
         Hotel hotel = hotelMapper.toHotel(hotelCreateDTO);
-        return hotelMapper.hotelResponseDTO(hotelRepository.save(hotel));
+        LocalDateTime nowTime = LocalDateTime.now();
+        hotel.setCreatedDate(nowTime);
+        hotel.setLastModifiedDate(nowTime);
+        return hotelMapper.toHotelResponseDto(hotelRepository.save(hotel));
     }
 
     @Override
@@ -80,6 +84,7 @@ public class HotelServiceImpl implements HotelService {
         Optional<Hotel> hotel = hotelRepository.findById(id);
         checkHotelNotFound(hotel, id);
         hotelMapper.updateHotelFromDTO(hotelUpdateDTO, hotel.get());
+        hotel.get().setCreatedDate(LocalDateTime.now());
         return hotelMapper.toHotelResponseDto(hotelRepository.save(hotel.get()));
     }
 
@@ -96,7 +101,7 @@ public class HotelServiceImpl implements HotelService {
         Pageable pageable = PageRequest.of(
                 requestDTO.getPageNum(),
                 requestDTO.getPageSize(),
-                Sort.by("createAt").descending());
+                Sort.by("createdDate").descending());
         Page<Hotel> result = hotelRepository.searchHotels(
                 requestDTO.getName(),
                 requestDTO.getLocation(),
@@ -113,7 +118,7 @@ public class HotelServiceImpl implements HotelService {
                         result.getTotalPages(),
                         requestDTO.getPageNum() + 1,
                         requestDTO.getPageSize(),
-                        "createDate",
+                        "createdDate",
                         "desc"
                 )
         );
@@ -122,7 +127,7 @@ public class HotelServiceImpl implements HotelService {
 
     private void checkHotelNotFound(Optional<Hotel> hotel, Long id){
         if(hotel.isEmpty()){
-            throw new NotFoundException(ErrorMessage.Hotel.ERR_NOT_FOUND_ID);
+            throw new NotFoundException(ErrorMessage.Hotel.ERR_NOT_FOUND_ID, id);
         }
     }
 
